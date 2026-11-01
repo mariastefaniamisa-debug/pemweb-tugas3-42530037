@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Buku Perpustakaan</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 30px auto; padding: 0 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #f0f0f0; }
+        .btn { padding: 6px 12px; border: 0; border-radius: 4px; cursor: pointer; text-decoration: none; color: #fff; font-size: 14px; }
+        .tambah { background: #2e7d32; } .edit { background: #1565c0; } .hapus { background: #c62828; }
+        .paging a { margin-right: 6px; }
+    form.inline { display: inline; }
+    </style>
+</head>
+<body>
+    <h1>Data Buku Perpustakaan</h1>
+
+    <form method="GET" action="/">
+    <input type="text" name="q" placeholder="Cari judul / penulis" value="<%= q %>">
+    <button type="submit">Cari</button>
+    <a href="/buku/tambah" class="btn tambah">+ Tambah Buku</a>
+    </form>
+
+    <table>
+    <tr><th>ID</th><th>Judul</th><th>Penulis</th><th>Tahun</th><th>Kategori</th><th>Aksi</th></tr>
+    <% if (buku.length === 0) { %>
+        <tr><td colspan="6">Data tidak ditemukan.</td></tr>
+    <% } %>
+    <% buku.forEach(b => { %>
+        <tr>
+        <td><%= b.id %></td>
+        <td><%= b.judul %></td>
+        <td><%= b.penulis %></td>
+        <td><%= b.tahun_terbit %></td>
+        <td><%= b.kategori %></td>
+        <td>
+            <a href="/buku/<%= b.id %>/edit" class="btn edit">Edit</a>
+            <form class="inline" method="POST" action="/buku/<%= b.id %>/hapus"
+                onsubmit="return confirm('Yakin hapus data ini?')">
+            <button type="submit" class="btn hapus">Hapus</button>
+            </form>
+        </td>
+    </tr>
+    <% }) %>
+    </table>
+
+    <p class="paging">Halaman:
+    <% for (let i = 1; i <= totalPages; i++) { %>
+        <% if (i === page) { %><strong>[<%= i %>]</strong>
+        <% } else { %><a href="/?page=<%= i %>&q=<%= encodeURIComponent(q) %>"><%= i %></a><% } %>
+    <% } %>
+    </p>
+</body>
+</html>

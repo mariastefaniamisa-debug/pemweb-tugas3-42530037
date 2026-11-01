@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= judulHalaman %></title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 30px auto; padding: 0 15px; }
+        label { display: block; margin-top: 12px; }
+        input { width: 100%; padding: 8px; box-sizing: border-box; }
+        button, a.batal { margin-top: 16px; padding: 8px 14px; }
+    </style>
+</head>
+<body>
+    <h1><%= judulHalaman %></h1>
+    <form method="POST" action="<%= buku ? '/buku/' + buku.id + '/edit' : '/buku/tambah' %>">
+    <label>Judul
+        <input type="text" name="judul" required value="<%= buku ? buku.judul : '' %>">
+    </label>
+    <label>Penulis
+        <input type="text" name="penulis" required value="<%= buku ? buku.penulis : '' %>">
+    </label>
+    <label>Tahun Terbit
+        <input type="number" name="tahun_terbit" min="1000" max="2100" required value="<%= buku ? buku.tahun_terbit : '' %>">
+    </label>
+    <label>Kategori
+        <input type="text" name="kategori" required value="<%= buku ? buku.kategori : '' %>">
+    </label>
+    <button type="submit">Simpan</button>
+    <a class="batal" href="/">Batal</a>
+    </form>
+</body>
+</html>
