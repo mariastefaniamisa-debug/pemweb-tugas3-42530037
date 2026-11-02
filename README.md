@@ -14,7 +14,7 @@ Implementasi web CRUD relasional dengan Express.js, MySQL Connection Pool, dan P
 
 ## Video Penjelasan (YouTube, Public)
 
-https://www.youtube.com/watch?v=[ID_VIDEO]
+https://youtu.be/sNl9K7xoJoE?si=2lYZFvoRZ3mNeneH
 
 ## Fitur
 
